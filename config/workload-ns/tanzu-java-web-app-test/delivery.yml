@@ -37,9 +37,9 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
-        developer.apps.tanzu.vmware.com/image-source-digest: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-tanzu-java-web-app-test@sha256:9f807fda777e496115a9b7e4ed0c7286ea275924b1f04eb9e0a0638926cf0ccf
+        developer.apps.tanzu.vmware.com/image-source-digest: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-tanzu-java-web-app-test@sha256:bac4f0d517bd366bd46462c09afc51b1f46c4b825774b47d2c6689e2c3455a57
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-tanzu-java-web-app-test@sha256:9f807fda777e496115a9b7e4ed0c7286ea275924b1f04eb9e0a0638926cf0ccf
+        local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-tanzu-java-web-app-test@sha256:bac4f0d517bd366bd46462c09afc51b1f46c4b825774b47d2c6689e2c3455a57
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: tanzu-java-web-app
@@ -62,7 +62,7 @@ spec:
           value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: xploretanzu.azurecr.io/tap/workloads/tanzu-java-web-app-test-workload-ns@sha256:130f8615de7ed14c63c957d02b922675c46c36e9620467f4ed76cf1c3127be25
+        image: xploretanzu.azurecr.io/tap/workloads/tanzu-java-web-app-test-workload-ns@sha256:440c2e06577109425c0dae2f54208c71f93da5c13c84a2ef4db4e01375bf5c1e
         livenessProbe:
           httpGet:
             path: /livez
