@@ -64,6 +64,8 @@ spec:
       - env:
         - name: SPRING_CONFIG_IMPORT
           value: optional:configtree:${SERVICE_BINDING_ROOT}/motd-config/
+        - name: SPRING_PROFILES_ACTIVE
+          value: az
         - name: BPL_DEBUG_ENABLED
           value: "true"
         - name: BPL_DEBUG_PORT
