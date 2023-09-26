@@ -1,0 +1,55 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: motd-frontend
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
+  labels:
+    app.kubernetes.io/part-of: motd-frontend
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    networking.knative.dev/visibility: cluster-local
+    app.kubernetes.io/component: run
+    carto.run/workload-name: motd-frontend
+spec:
+  template:
+    metadata:
+      annotations:
+        apps.tanzu.vmware.com/debug: "true"
+        apps.tanzu.vmware.com/live-update: "true"
+        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/metric: rps
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/target: "20"
+        autoscaling.knative.dev/window: 60s
+        conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
+          developer-conventions/add-source-image-label
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+        developer.apps.tanzu.vmware.com/image-source-digest: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:fb9081477b4354b9963d5b10bd737987c36eabb2b15b4669232f7bb0bca27f53
+        developer.conventions/target-containers: workload
+        local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:fb9081477b4354b9963d5b10bd737987c36eabb2b15b4669232f7bb0bca27f53
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: motd-frontend
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: motd-frontend
+        networking.knative.dev/visibility: cluster-local
+    spec:
+      containers:
+      - image: xploretanzu.azurecr.io/tap/workloads/motd-frontend-workload-ns@sha256:88d531074f12028c6a35c3f803475bb6dcf43bdd6077d6b97b1271122e01b7ed
+        name: workload
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
