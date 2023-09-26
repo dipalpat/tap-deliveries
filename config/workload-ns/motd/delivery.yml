@@ -1,0 +1,58 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: motd
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
+  labels:
+    apis.apps.tanzu.vmware.com/register-api: "true"
+    app.kubernetes.io/part-of: motd
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/component: run
+    carto.run/workload-name: motd
+spec:
+  template:
+    metadata:
+      annotations:
+        apps.tanzu.vmware.com/debug: "true"
+        apps.tanzu.vmware.com/live-update: "true"
+        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/metric: rps
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/target: "100"
+        autoscaling.knative.dev/window: 300s
+        conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
+          developer-conventions/add-source-image-label
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+        developer.apps.tanzu.vmware.com/image-source-digest: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd@sha256:c9aeb616b80727f3cff8dc8dcd2fda498f99b3677d0d77a6da51238cf68f48fc
+        developer.conventions/target-containers: workload
+        local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd@sha256:c9aeb616b80727f3cff8dc8dcd2fda498f99b3677d0d77a6da51238cf68f48fc
+      labels:
+        apis.apps.tanzu.vmware.com/register-api: "true"
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: motd
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: motd
+    spec:
+      containers:
+      - env:
+        - name: MOTD_NAMESPACE
+          value: workload-ns
+        image: xploretanzu.azurecr.io/tap/workloads/motd-workload-ns@sha256:ca9652279f40b1f09675e74efcb262d1c0ce050bdf960aafc171b9529743e45c
+        name: workload
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            cpu: 250m
+            memory: 128Mi
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
