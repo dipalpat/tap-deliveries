@@ -21,7 +21,7 @@ metadata:
     local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-backend@sha256:7f2a96d5ce2dc259bfabd598b7c49ace4a09ec414e84b1ad2cc4d0e3b8d397de
     autoscaling.knative.dev/maxScale: "3"
     autoscaling.knative.dev/metric: rps
-    autoscaling.knative.dev/minScale: "1"
+    autoscaling.knative.dev/minScale: "0"
     autoscaling.knative.dev/target: "5"
     autoscaling.knative.dev/window: 120s
     kapp.k14s.io/change-group: servicebinding.io/ServiceBindings
