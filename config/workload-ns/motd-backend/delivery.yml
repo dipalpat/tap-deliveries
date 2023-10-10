@@ -50,7 +50,6 @@ spec:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: motd-backend
         apps.tanzu.vmware.com/auto-configure-actuators: "true"
-        apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: motd-backend
         conventions.carto.run/framework: spring-boot
@@ -72,7 +71,7 @@ spec:
           value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: xploretanzu.azurecr.io/tap/workloads/motd-backend-workload-ns@sha256:e5ad49ab6ab4f42cce06ced64f1bb478d51c6b60fcfe217a71d161f6430b303e
+        image: xploretanzu.azurecr.io/tap/workloads/motd-backend-workload-ns@sha256:5dd94329c87aa0a2fabd920c49198ee3f62a2dffed60b5b1210cf55fa9f3f816
         livenessProbe:
           httpGet:
             path: /livez
