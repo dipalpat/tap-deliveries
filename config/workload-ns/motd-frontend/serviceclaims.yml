@@ -18,7 +18,7 @@ kind: ServiceBinding
 metadata:
   name: motd-frontend-motd-config
   annotations:
-    local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:fb9081477b4354b9963d5b10bd737987c36eabb2b15b4669232f7bb0bca27f53
+    local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:5d742aab28e2c490e4a9622a4c62ea747d5d79cb2ee8cb1ef51a3f9e34679f0b
     autoscaling.knative.dev/maxScale: "3"
     autoscaling.knative.dev/metric: rps
     autoscaling.knative.dev/minScale: "0"
