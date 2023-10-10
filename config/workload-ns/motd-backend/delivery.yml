@@ -72,7 +72,7 @@ spec:
           value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: xploretanzu.azurecr.io/tap/workloads/motd-backend-workload-ns@sha256:0b961cdde37cf64d8c25777770e2be022e33d001c58d874308e8f73b020de056
+        image: xploretanzu.azurecr.io/tap/workloads/motd-backend-workload-ns@sha256:e5ad49ab6ab4f42cce06ced64f1bb478d51c6b60fcfe217a71d161f6430b303e
         livenessProbe:
           httpGet:
             path: /livez
