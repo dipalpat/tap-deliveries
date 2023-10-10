@@ -29,18 +29,19 @@ spec:
           developer-conventions/add-source-image-label
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
-        developer.apps.tanzu.vmware.com/image-source-digest: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:3af2050126a2dd011c9415383c13819cd0f817bd9bbfc424d7134a47eb4eabfb
+        developer.apps.tanzu.vmware.com/image-source-digest: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:5d742aab28e2c490e4a9622a4c62ea747d5d79cb2ee8cb1ef51a3f9e34679f0b
         developer.conventions/target-containers: workload
-        local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:3af2050126a2dd011c9415383c13819cd0f817bd9bbfc424d7134a47eb4eabfb
+        local-source-proxy.apps.tanzu.vmware.com: xploretanzu.azurecr.io/tap/tap-source-proxy:workload-ns-motd-frontend@sha256:5d742aab28e2c490e4a9622a4c62ea747d5d79cb2ee8cb1ef51a3f9e34679f0b
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: motd-frontend
+        apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: motd-frontend
         networking.knative.dev/visibility: cluster-local
     spec:
       containers:
-      - image: xploretanzu.azurecr.io/tap/workloads/motd-frontend-workload-ns@sha256:5db206c06c388f8e44f68a9242483743fcc18863fe9630b441e42f137a31f46b
+      - image: xploretanzu.azurecr.io/tap/workloads/motd-frontend-workload-ns@sha256:125e4e67dfb8e6ce084c154e6d2dfc231cb68f571c5bf626ac89e225ee0945cb
         name: workload
         resources:
           limits:
